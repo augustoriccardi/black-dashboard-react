@@ -101,8 +101,17 @@ const Chart = () => {
             const budgetedPerformance = task.budgetPerfRatio;
             dataset.data.push(accumulatedPerformance / budgetedPerformance);
           }
-
-          datasets.push(dataset);
+          // Verificar si la tarea tiene avance en algún mes
+          let hasProgress = false;
+          for (const key in dataset.data) {
+            if (dataset.data[key] > 0) {
+              hasProgress = true;
+              break;
+            }
+          }
+          if (hasProgress) {
+            datasets.push(dataset);
+          }
         }
 
         setChartData({
@@ -132,37 +141,6 @@ const Chart = () => {
 
   const chartOptions = {
     maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true,
-        grid: {
-          drawBorder: false,
-          borderDash: [3, 3],
-        },
-        ticks: {
-          stepSize: 0.1,
-        },
-      },
-    },
-    plugins: {
-      annotation: {
-        annotations: {
-          line1: {
-            type: "line",
-            scaleID: "y",
-            value: 1,
-            borderColor: "#FF0000",
-            borderWidth: 1,
-            borderDash: [2, 2],
-            label: {
-              backgroundColor: "#FF0000",
-              content: "Valor 1",
-              enabled: true,
-            },
-          },
-        },
-      },
-    },
   };
 
   return (
