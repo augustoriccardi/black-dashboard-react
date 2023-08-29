@@ -50,6 +50,8 @@ import {
   chartExample4,
 } from "variables/charts.js";
 
+import Chart from "components/Chart/Chart";
+
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState("data1");
   const setBgChartData = (name) => {
@@ -64,7 +66,7 @@ function Dashboard(props) {
               <CardHeader>
                 <Row>
                   <Col className="text-left" sm="6">
-                    <h5 className="card-category">Total Shipments</h5>
+                    <h5 className="card-category"></h5>
                     <CardTitle tag="h2">Performance</CardTitle>
                   </Col>
                   <Col sm="6">
@@ -129,10 +131,7 @@ function Dashboard(props) {
               </CardHeader>
               <CardBody>
                 <div className="chart-area">
-                  <Line
-                    data={chartExample1[bigChartData]}
-                    options={chartExample1.options}
-                  />
+                  <Chart />
                 </div>
               </CardBody>
             </Card>
@@ -142,7 +141,7 @@ function Dashboard(props) {
           <Col lg="4">
             <Card className="card-chart">
               <CardHeader>
-                <h5 className="card-category">Total Shipments</h5>
+                <h5 className="card-category"></h5>
                 <CardTitle tag="h3">
                   <i className="tim-icons icon-bell-55 text-info" /> 763,215
                 </CardTitle>
